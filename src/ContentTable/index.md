@@ -201,7 +201,7 @@ export default () => {
 | showSelect             | 显示表格选择                                                                                                                                                      | false  |
 | showResultAll          | 显示 本页全选/结果全选                                                                                                                                            | false  |
 | showSelectInfo         | 已选择几个文字信息                                                                                                                                                | true   |
-| rowDisable             | function, 返回布尔值 用在 selections disabled                                                                                                                     | -      |
+| rowDisable             | function(record), 返回布尔值 用在 selections disabled                                                                                                             | -      |
 | rowSelection           | 用于 Table 上。当 showSelect=true 时, 将与默认 rowSelection 合并, 再赋给 Table                                                                                    | -      |
 | onTableSelectChange    | function({type, selectedRowKeys, selectedRows}), 选择项发生变化的回调。<br/>type 值为 'currentPage' 或 'resultAll' , 本页全选和手动勾选的 type 都是 'currentPage' | -      |
 | columnTitle            | showResultAll=true 时, 内置了自定义 columnTitle <br/>设置 columnTitle=false, 可使用 antd table 的默认 columnTitle                                                 |

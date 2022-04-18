@@ -30,6 +30,10 @@ yarn add ant-design-kit -S
 import { ConfirmBtn } from 'ant-design-kit';
 ```
 
+## Github
+
+[https://github.com/zlinggnilz/ant-design-kit](https://github.com/zlinggnilz/ant-design-kit)
+
 ## 改动
 
 用 typescript 梳理了一下, 个别组件做了些许改动

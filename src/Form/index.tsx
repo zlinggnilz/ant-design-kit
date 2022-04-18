@@ -163,41 +163,41 @@ const CoolForm = forwardRef((props: FormProp, ref) => {
   useImperativeHandle(ref, () => form, []);
 
   const onFinish = useCallback(values => {
-    onSubmit && onSubmit(formTrim(values));
+    if (editable) {
+      onSubmit && onSubmit(formTrim(values));
+    }
   }, []);
 
-  const handleFinishFailed = useCallback(
-    ({ values, errorFields, outOfDate }) => {
-      const nameId = errorFields[0].name.join('_');
+  const handleFinishFailed = useCallback(datas => {
+    const { values, errorFields, outOfDate } = datas;
+    const nameId = errorFields[0].name.join('_');
 
-      if (scrollToFirstError) {
-        const errIdEl = wrapRef.current.querySelector(`#${nameId}`);
-        if (errIdEl) {
-          // form.scrollToField(errorFields[0].name);
-          errIdEl.scrollIntoViewIfNeeded({
+    if (scrollToFirstError) {
+      const errIdEl = wrapRef.current.querySelector(`#${nameId}`);
+      if (errIdEl) {
+        // form.scrollToField(errorFields[0].name);
+        errIdEl.scrollIntoViewIfNeeded({
+          scrollMode: 'if-needed',
+          block: 'center',
+        });
+      } else {
+        setTimeout(() => {
+          const errEl = wrapRef.current.querySelector(
+            '.ant-form-item-explain-error',
+          );
+          if (!errEl) {
+            return;
+          }
+          errEl.scrollIntoViewIfNeeded({
             scrollMode: 'if-needed',
             block: 'center',
           });
-        } else {
-          setTimeout(() => {
-            const errEl = wrapRef.current.querySelector(
-              '.ant-form-item-explain-error',
-            );
-            if (!errEl) {
-              return;
-            }
-            errEl.scrollIntoViewIfNeeded({
-              scrollMode: 'if-needed',
-              block: 'center',
-            });
-          }, 60);
-        }
+        }, 60);
       }
+    }
 
-      onFinishFailed && onFinishFailed({ values, errorFields, outOfDate });
-    },
-    [],
-  );
+    onFinishFailed && onFinishFailed(datas);
+  }, []);
 
   const wrap = memo(({ children, ...rest }) => (
     <form ref={wrapRef} {...rest}>

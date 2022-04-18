@@ -1,4 +1,5 @@
 import { useRef, useMemo, useEffect } from 'react';
+import isEqual from 'lodash.isequal';
 
 function compare(previous: any, next: any) {
   let ifEqual;
@@ -6,7 +7,7 @@ function compare(previous: any, next: any) {
     return true;
   }
   try {
-    ifEqual = JSON.stringify(previous) === JSON.stringify(next);
+    ifEqual = isEqual(previous, next);
   } catch (error) {
     ifEqual = false;
   }
@@ -41,6 +42,5 @@ export function useMemoCompare(next: any) {
       previousRef.current = next;
     }
   });
-  // Finally, if equal then return the previous value
   return isEqual ? previous : next;
 }

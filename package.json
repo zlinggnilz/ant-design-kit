@@ -1,6 +1,6 @@
 {
   "name": "ant-design-kit",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "Ling",
   "scripts": {
     "start": "dumi dev",
@@ -26,7 +26,7 @@
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
-  "repository": "",
+  "repository": "https://github.com/zlinggnilz/ant-design-kit",
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
       "prettier --write"
@@ -44,11 +44,13 @@
     "classnames": "^2.0.0",
     "lodash.get": "^4.0.0",
     "lodash.isempty": "^4.0.0",
+    "lodash.isequal": "^4.5.0",
     "qs": "^6.0.0"
   },
   "devDependencies": {
     "@types/lodash.get": "^4.4.6",
     "@types/lodash.isempty": "^4.4.6",
+    "@types/lodash.isequal": "^4.5.6",
     "@types/qs": "^6.9.7",
     "@types/react": "^17.0.43",
     "@types/react-dom": "^17.0.14",

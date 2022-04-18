@@ -31,7 +31,6 @@ const ContentTable = React.forwardRef((props: ContentTableProp, ref) => {
     replaceLocation = false,
     showReset = defaultShowRest,
     formWrapClassName,
-    params,
     type,
     payload = {},
     listType = 'table',
@@ -118,7 +117,6 @@ const ContentTable = React.forwardRef((props: ContentTableProp, ref) => {
           ref={tableRef}
           listType={listType}
           payload={{ ...query, ...formData, ...payload }}
-          params={params}
           type={type}
           {...rest}
           {...otherProps}
