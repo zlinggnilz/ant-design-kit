@@ -38,7 +38,7 @@ const getItems = (type?: string, label?: any, required?: boolean) => {
       field = <Textarea rows={3} />;
       break;
     case 'int':
-      field = <InputNumber min={0} precision={0} style={{ width: '100%' }} />;
+      field = <InputNumber precision={0} style={{ width: '100%' }} />;
       rule = [
         () => ({
           async validator(_: any, v: any) {
@@ -59,7 +59,7 @@ const getItems = (type?: string, label?: any, required?: boolean) => {
       break;
     case 'float':
     case 'number':
-      field = <InputNumber min={0} style={{ width: '100%' }} />;
+      field = <InputNumber style={{ width: '100%' }} />;
       rule = [
         () => ({
           async validator(_: any, v: any) {
