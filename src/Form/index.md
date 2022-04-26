@@ -19,7 +19,7 @@ nav:
 ### 🌵 基础表单
 
 ```tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { DatePicker } from 'antd';
 import { Form } from 'ant-design-kit';
 
@@ -30,32 +30,42 @@ const selectList = [
 ];
 
 const formAttr = [
-  { label: '名称', name: 'name' },
-  { label: '邮箱', name: 'email', type: 'email', required: true },
+  { label: '名称', name: 'name', required: true },
+  { label: '邮箱', name: 'email', type: 'email' },
   {
     label: '下拉',
     name: 'select1',
     type: 'select',
-    fieldProps: { dataSource: selectList },
+    fieldProps: { options: selectList },
   },
   {
     label: '单选',
     name: 'select2',
     type: 'radio',
-    fieldProps: { dataSource: selectList },
+    fieldProps: { options: selectList },
   },
   {
     label: '多选',
     name: 'select3',
     type: 'checkbox',
-    fieldProps: { dataSource: selectList },
+    fieldProps: { options: selectList },
   },
   { label: '日期', name: 'date', component: <DatePicker /> },
 ];
-const handleSubmit = values => {
-  console.log('form submit >>', values);
+
+export default () => {
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = values => {
+    console.log('form submit >>', values);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  };
+
+  return <Form formAttr={formAttr} onSubmit={handleSubmit} loading={loading} />;
 };
-export default () => <Form formAttr={formAttr} onSubmit={handleSubmit} />;
 ```
 
 ### 🌵 表单联动
@@ -85,13 +95,17 @@ export default () => {
     ]);
   };
 
+  const handleClick = () => {
+    formRef.current.submit();
+  };
+
   const formAttr = [
     {
       label: '单选',
       name: 'choice',
       required: true,
       type: 'radio',
-      fieldProps: { dataSource: selectList, onChange: handleChange },
+      fieldProps: { options: selectList, onChange: handleChange },
     },
     {
       shouldUpdate: (prevValues, curValues) =>
@@ -123,12 +137,15 @@ export default () => {
     },
   ];
   return (
-    <Form
-      ref={formRef}
-      data={{ choice: 'home' }}
-      formAttr={formAttr}
-      onSubmit={handleSubmit}
-    />
+    <>
+      <Form
+        ref={formRef}
+        data={{ choice: 'home' }}
+        formAttr={formAttr}
+        onSubmit={handleSubmit}
+      />
+      <buton onClick={handleClick}>click</buton>
+    </>
   );
 };
 ```
@@ -163,7 +180,7 @@ export default () => (
           name="choice"
           required
           type="select"
-          fieldProps={{ dataSource: selectList }}
+          fieldProps={{ options: selectList }}
         />
       </Col>
       <Col span={24}>
@@ -209,30 +226,30 @@ export default () => (
 <strong>其他属性</strong> 同 antd Form
 </Alert>
 
-| 属性名             | 说明                                                                                                                                                                                 | 默认值                                 |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
-| editable           | 是否编辑状态, 会放置到通过 `formAttr` 遍历生成的 `CreateField` 上。 **注意**是只有通过 `formAttr` 遍历生成的 `CreateField` 才会添加该属性, `shouldUpdate` 的自定义控件也需要自己添加 | true                                   |
-| data               | 表单默认值                                                                                                                                                                           | {}                                     |
-| className          |                                                                                                                                                                                      | -                                      |
-| layout             | 布局方式, `horizontal`、 `inline` 或 `vertical`, 同 antd Form                                                                                                                        | 'horizontal'                           |
-| formAttr           | 数组, 遍历生成 `CreateField` 控件                                                                                                                                                    | []                                     |
-| loading            | 布尔值, 表单提交时的 loading                                                                                                                                                         | -                                      |
-| onSubmit           | 提交表单且数据验证成功后回调事件                                                                                                                                                     | -                                      |
-| onFinishFailed     | 提交表单且数据验证失败后回调事件                                                                                                                                                     | -                                      |
-| submitText         | 如果用默认的保存按钮,按钮文字                                                                                                                                                        | 提交                                   |
-| submitButtonProps  | 如果用默认的保存按钮,按钮属性                                                                                                                                                        | -                                      |
-| submitAction       | 自定义 保存按钮                                                                                                                                                                      | button                                 |
-| onCancel           | 如果用默认的取消按钮,点击取消按钮的事件, 默认重置表单                                                                                                                                | reset form                             |
-| cancelButtonProps  | 如果用默认的保存按钮,按钮属性                                                                                                                                                        | -                                      |
-| cancelAction       | 自定义 取消按钮                                                                                                                                                                      | button                                 |
-| cancelText         | 如果用默认的取消按钮,按钮文字                                                                                                                                                        | 重置                                   |
-| scrollToFirstError | 同 antd Form                                                                                                                                                                         | true                                   |
-| labelCol           | 同 antd Form                                                                                                                                                                         | { xs: { span: 24 }, sm: { span: 5 } }  |
-| wrapperCol         | 同 antd Form                                                                                                                                                                         | { xs: { span: 24 }, sm: { span: 15 } } |
-| actionCol          | action 按钮的布局, 会自动获取, 也可自行设置                                                                                                                                          | -                                      |
-| showAction         | 是否显示 action 按钮                                                                                                                                                                 | true                                   |
-| extra              | 放在 action 按钮后面的内容                                                                                                                                                           | -                                      |
-| children           | 放在 `formAttr` 生成的控件之后                                                                                                                                                       | -                                      |
+| 属性名             | 说明                                                                                                                                                                                   | 默认值                                 |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| editable           | 是否编辑状态, 会放置到通过 `formAttr` 遍历生成的 `CreateField` 上。 **注意**是只有通过 `formAttr` 遍历生成的 `CreateField` 才会添加该属性, `shouldUpdate` 内的自定义控件也需要自己添加 | true                                   |
+| data               | 表单默认值                                                                                                                                                                             | {}                                     |
+| className          |                                                                                                                                                                                        | -                                      |
+| layout             | 布局方式, `horizontal`、 `inline` 或 `vertical`, 同 antd Form                                                                                                                          | 'horizontal'                           |
+| formAttr           | 数组, 遍历生成 `CreateField` 控件                                                                                                                                                      | []                                     |
+| loading            | 布尔值, 表单提交时的 loading                                                                                                                                                           | -                                      |
+| onSubmit           | 提交表单且数据验证成功后回调事件                                                                                                                                                       | -                                      |
+| onFinishFailed     | 提交表单且数据验证失败后回调事件                                                                                                                                                       | -                                      |
+| submitText         | 如果用默认的保存按钮,按钮文字                                                                                                                                                          | 提交                                   |
+| submitButtonProps  | 如果用默认的保存按钮,按钮属性                                                                                                                                                          | -                                      |
+| submitAction       | 自定义 保存按钮                                                                                                                                                                        | button                                 |
+| onCancel           | 如果用默认的取消按钮,点击取消按钮的事件, 默认重置表单                                                                                                                                  | reset form                             |
+| cancelButtonProps  | 如果用默认的保存按钮,按钮属性                                                                                                                                                          | -                                      |
+| cancelAction       | 自定义 取消按钮                                                                                                                                                                        | button                                 |
+| cancelText         | 如果用默认的取消按钮,按钮文字                                                                                                                                                          | 重置                                   |
+| scrollToFirstError | 同 antd Form                                                                                                                                                                           | true                                   |
+| labelCol           | 同 antd Form                                                                                                                                                                           | { xs: { span: 24 }, sm: { span: 5 } }  |
+| wrapperCol         | 同 antd Form                                                                                                                                                                           | { xs: { span: 24 }, sm: { span: 15 } } |
+| actionCol          | action 按钮的布局, 会自动获取, 也可自行设置                                                                                                                                            | -                                      |
+| showAction         | 是否显示 action 按钮                                                                                                                                                                   | true                                   |
+| extra              | 放在 action 按钮后面的内容                                                                                                                                                             | -                                      |
+| children           | 放在 `formAttr` 生成的控件之后                                                                                                                                                         | -                                      |
 
 ### formAttr
 

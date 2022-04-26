@@ -3,11 +3,11 @@ import { Select } from 'antd';
 // import 'antd/es/select/style';
 
 const CustomSelect = ({
-  dataSource = [],
+  dataSource,
   labelSearch = true,
   valueSearch = false,
   ...rest
-}) => {
+}: any) => {
   const filterOption = (v: any, option: any): boolean => {
     const { label, value } = option;
     const keyword = (v || '').trim().toLowerCase();

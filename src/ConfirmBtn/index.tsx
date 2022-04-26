@@ -18,8 +18,8 @@ import './style/index.less';
 const ConfirmBtn = ({
   onOk,
   onCancel,
-  children = '删除',
-  text,
+  children,
+  text = '删除',
   title = '确定删除吗？',
   type = 'a',
   mode = 'popover',

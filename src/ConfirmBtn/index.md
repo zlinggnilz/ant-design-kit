@@ -30,8 +30,8 @@ export default () => (
   <>
     <p>mode = 'popover'</p>
     <Space size={24}>
-      <ConfirmBtn type="button" onOk={handleOk}>
-        删除
+      <ConfirmBtn type="button" onOk={handleOk} title="确定此操作吗?">
+        操作
       </ConfirmBtn>
       <ConfirmBtn onOk={handleOk}>删除</ConfirmBtn>
     </Space>

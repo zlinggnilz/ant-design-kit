@@ -156,10 +156,6 @@ const CoolForm = forwardRef((props: FormProp, ref) => {
     [cancelAction, loading, cancelText],
   );
 
-  // const submit = useCallback(() => {
-  //   form.submit();
-  // }, []);
-
   useImperativeHandle(ref, () => form, []);
 
   const onFinish = useCallback(values => {

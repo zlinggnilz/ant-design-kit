@@ -2,7 +2,7 @@ import React from 'react';
 import { Checkbox } from 'antd';
 // import 'antd/es/checkbox/style';
 
-const CustomCheck = ({ dataSource = [], ...rest }) => {
+const CustomCheck = ({ dataSource, ...rest }: any) => {
   return <Checkbox.Group options={dataSource} {...rest} />;
 };
 

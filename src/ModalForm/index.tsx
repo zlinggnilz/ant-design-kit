@@ -72,15 +72,11 @@ const ModalForm = forwardRef((props: ModalProp, ref) => {
     onCancel && onCancel(e);
   };
 
-  useImperativeHandle(
-    ref,
-    () => ({
-      open,
-      close,
-      ...formRef.current,
-    }),
-    [],
-  );
+  useImperativeHandle(ref, () => ({
+    open,
+    close,
+    ...formRef.current,
+  }));
 
   const handleOk = () => {
     formRef.current.submit();
