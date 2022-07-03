@@ -4,9 +4,9 @@ Components based on `antd` v4
 
 ## Doc
 
-[Demos and Doc](https://zlinggnilz.github.io/ant-design-kit/)
+📙 [Demos and Doc](https://zlinggnilz.github.io/ant-design-kit/)
 
-## install
+## Install
 
 ```js
 npm install ant-design-kit -S

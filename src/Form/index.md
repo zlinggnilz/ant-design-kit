@@ -144,7 +144,7 @@ export default () => {
         formAttr={formAttr}
         onSubmit={handleSubmit}
       />
-      <buton onClick={handleClick}>click</buton>
+      <button onClick={handleClick}>click to submit</button>
     </>
   );
 };
