@@ -3,7 +3,7 @@ import { Checkbox, Dropdown, Menu } from 'antd';
 import { flattenData } from '../_utils';
 import { useCompare } from '../hooks/useMemoCompare';
 import CTable, { setConfig } from './CTable';
-import { ResultAllProp, rowKeyType } from './interface';
+import type { ResultAllProp, rowKeyType } from './interface';
 
 /**
  * showSelect 显示选择
@@ -55,13 +55,13 @@ const CustomResultAllTable = React.forwardRef((props: ResultAllProp, ref) => {
     return flattenData(dataSource, childrenColumnName);
   }, [dataSource, childrenColumnName]);
 
-  const recordRows = flattedData.filter(record =>
+  const recordRows = flattedData.filter((record) =>
     rowDisable ? !rowDisable(record) : true,
   );
   const recordKeys: rowKeyType[] = recordRows.map(getRowKey);
   const checkedCurrentAll =
     recordKeys.length > 0 &&
-    recordKeys.every(key => selectedRowKeys.includes(key));
+    recordKeys.every((key) => selectedRowKeys.includes(key));
 
   useEffect(() => {
     return () => {
@@ -112,7 +112,7 @@ const CustomResultAllTable = React.forwardRef((props: ResultAllProp, ref) => {
   }, [selectedRowKeys, resultAllSelect]);
 
   function filerRows(arr: Array<any>) {
-    return rowDisable ? arr.filter(item => !rowDisable(item)) : arr;
+    return rowDisable ? arr.filter((item) => !rowDisable(item)) : arr;
   }
 
   if (!showSelect) {

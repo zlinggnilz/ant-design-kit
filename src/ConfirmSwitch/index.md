@@ -20,7 +20,7 @@ import { ConfirmSwitch } from 'ant-design-kit';
 
 const handleChange = () => {
   return new Promise((resolve, reject) => {
-    setTimeout(resolve, 1300);
+    setTimeout(resolve, 1500);
   });
 };
 export default () => <ConfirmSwitch onChange={handleChange} checked />;

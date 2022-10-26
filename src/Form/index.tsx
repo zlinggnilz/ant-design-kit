@@ -12,7 +12,8 @@ import CreateField from '../CreateField';
 import { messages } from './data';
 import classnames from 'classnames';
 import get from 'lodash.get';
-import {
+import scrollIntoView from 'scroll-into-view-if-needed';
+import type {
   FormAttrFieldType,
   MounseFnType,
   ColType,
@@ -20,7 +21,6 @@ import {
   ConfigOptionsType,
 } from './interface';
 import './style/index.less';
-
 /**
  *
  * formAttr 元素说明:
@@ -158,21 +158,21 @@ const CoolForm = forwardRef((props: FormProp, ref) => {
 
   useImperativeHandle(ref, () => form, []);
 
-  const onFinish = useCallback(values => {
+  const onFinish = useCallback((values: object) => {
     if (editable) {
       onSubmit && onSubmit(formTrim(values));
     }
   }, []);
 
-  const handleFinishFailed = useCallback(datas => {
+  const handleFinishFailed = useCallback((datas: any) => {
     const { values, errorFields, outOfDate } = datas;
     const nameId = errorFields[0].name.join('_');
 
     if (scrollToFirstError) {
-      const errIdEl = wrapRef.current.querySelector(`#${nameId}`);
+      const errIdEl: HTMLElement = wrapRef.current.querySelector(`#${nameId}`);
       if (errIdEl) {
         // form.scrollToField(errorFields[0].name);
-        errIdEl.scrollIntoViewIfNeeded({
+        scrollIntoView(errIdEl, {
           scrollMode: 'if-needed',
           block: 'center',
         });
@@ -184,7 +184,7 @@ const CoolForm = forwardRef((props: FormProp, ref) => {
           if (!errEl) {
             return;
           }
-          errEl.scrollIntoViewIfNeeded({
+          scrollIntoView(errEl, {
             scrollMode: 'if-needed',
             block: 'center',
           });
@@ -195,7 +195,7 @@ const CoolForm = forwardRef((props: FormProp, ref) => {
     onFinishFailed && onFinishFailed(datas);
   }, []);
 
-  const wrap = memo(({ children, ...rest }) => (
+  const Wrap = memo(({ children, ...rest }: any) => (
     <form ref={wrapRef} {...rest}>
       {children}
     </form>
@@ -216,7 +216,7 @@ const CoolForm = forwardRef((props: FormProp, ref) => {
       validateMessages={messages}
       onFinishFailed={handleFinishFailed}
       {...rest}
-      component={wrap}
+      component={Wrap}
     >
       {getFormFields(formAttr, editable)}
       {children}

@@ -41,5 +41,6 @@ import { ConfirmBtn } from 'ant-design-kit';
 - 去掉了 Loadimg 组件, 没什么用
 - PromiseBtn 改为默认有 message 提示
 - 增加 DataEmpty, 用得很少很少, 还是放进来了
+- 删除 ContentTable 的 replaceLocation, 原因: react-router-dom 升级 API 变动
 
 😎

@@ -4,7 +4,7 @@ import { urlReg } from '../_utils';
 import CheckGroup from './Field/CheckGroup';
 import RadioGroup from './Field/RadioGroup';
 import Select from './Field/Select';
-import { CreateFieldType } from '../Form/interface';
+import type { CreateFieldType } from '../Form/interface';
 
 const Textarea = Input.TextArea;
 
@@ -170,11 +170,10 @@ const CreateField = (props: CreateFieldType) => {
     );
   } else {
     // [rule, myField, msg] = getItems(type, label, required);
-    [rule, myField, msg] = useMemo(() => getItems(type, label, required), [
-      type,
-      label,
-      required,
-    ]);
+    [rule, myField, msg] = useMemo(
+      () => getItems(type, label, required),
+      [type, label, required],
+    );
     // myRule = required ? [{ required: true, message: message || msg }] : [];
     myRule = useMemo(
       () =>

@@ -1,6 +1,6 @@
 import React from 'react';
 import ConfirmBtn from '../ConfirmBtn';
-import { ConfirmTypes } from '../ConfirmBtn/interface';
+import type { ConfirmTypes } from '../ConfirmBtn/interface';
 
 const PromiseBtn = React.memo(
   ({ children, type = 'button', onClick, ...rest }: ConfirmTypes) => {

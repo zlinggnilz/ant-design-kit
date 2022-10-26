@@ -2,7 +2,7 @@ import React, { useState, memo } from 'react';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Popconfirm, Button, Modal, message } from 'antd';
 import classnames from 'classnames';
-import { ConfirmTypes } from './interface';
+import type { ConfirmTypes } from './interface';
 import './style/index.less';
 
 /**
@@ -57,14 +57,14 @@ const ConfirmBtn = ({
     setloading(true);
 
     return handle.then(
-      function() {
+      function () {
         // if (pop) {
         successMessage !== false &&
           message.success(successMessage || (children || text) + '成功');
         // }
         setloading(false);
       },
-      function(err: any) {
+      function (err: any) {
         // console.log(err);
         setloading(false);
       },

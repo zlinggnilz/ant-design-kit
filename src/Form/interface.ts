@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormProps } from 'antd/lib/Form';
+import type { FormProps } from 'antd/lib/Form';
 
 export type MounseFnType = React.MouseEventHandler<HTMLElement>;
 
@@ -15,18 +15,7 @@ type FieldTypes =
   | 'url'
   | 'group';
 
-type FormAttrType =
-  | 'text'
-  | 'email'
-  | 'textarea'
-  | 'select'
-  | 'int'
-  | 'number'
-  | 'radio'
-  | 'checkbox'
-  | 'url'
-  | 'group'
-  | 'onlyLabel';
+type FormAttrType = FieldTypes & 'onlyLabel';
 
 type FormLayoutType = 'horizontal' | 'inline' | 'vertical';
 

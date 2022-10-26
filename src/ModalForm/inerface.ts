@@ -1,5 +1,5 @@
-import { FormAttrFieldType } from '../Form/interface';
-import { ModalProps } from 'antd/lib/modal';
+import type { ModalProps } from 'antd/lib/modal';
+import type { FormAttrFieldType } from '../Form/interface';
 
 export interface ModalProp extends ModalProps {
   // onCancel?: Function;

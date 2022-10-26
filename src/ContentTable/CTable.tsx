@@ -5,11 +5,9 @@ import React, {
   Fragment,
   useMemo,
 } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
 import Form from '../Form';
 import TablePage from '../TablePage';
-import { ContentTableProp, ConfigOpionType } from './interface';
-import { stringify, parse } from 'qs';
+import type { ContentTableProp, ConfigOpionType } from './interface';
 import classnames from 'classnames';
 import './style/index.less';
 
@@ -28,7 +26,6 @@ const ContentTable = React.forwardRef((props: ContentTableProp, ref) => {
     listProps = {},
     formProps = {},
     children,
-    replaceLocation = false,
     showReset = defaultShowRest,
     formWrapClassName,
     type,
@@ -36,13 +33,6 @@ const ContentTable = React.forwardRef((props: ContentTableProp, ref) => {
     listType = 'table',
     ...rest
   } = props;
-  const history = useHistory();
-  const location = useLocation();
-
-  const query = useMemo(
-    () => (replaceLocation ? parse(location.search) : {}),
-    [],
-  );
 
   const formData = useMemo(() => {
     const d = formProps.data;
@@ -55,21 +45,10 @@ const ContentTable = React.forwardRef((props: ContentTableProp, ref) => {
   const formRef = useRef<any>();
   const tableRef = useRef<any>();
 
-  useEffect(() => {
-    if (Object.keys(query).length) {
-      const data = searchQueryFn ? searchQueryFn(query) : query;
-      formRef.current && formRef.current.setFieldsValue(data);
-    }
-  }, []);
-
   const handleSearch = (values: any) => {
     const data = searchValueFn ? searchValueFn(values) : values;
 
     tableRef.current.getList(1, data);
-
-    if (replaceLocation) {
-      history && history.replace({ search: stringify(data) });
-    }
   };
 
   useImperativeHandle(ref, () => ({
@@ -116,7 +95,7 @@ const ContentTable = React.forwardRef((props: ContentTableProp, ref) => {
         <TablePage
           ref={tableRef}
           listType={listType}
-          payload={{ ...query, ...formData, ...payload }}
+          payload={{ ...formData, ...payload }}
           type={type}
           {...rest}
           {...otherProps}

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Table, List } from 'antd';
 import get from 'lodash.get';
-import { TablePageProp, ConfigOpionType } from './interface';
+import type { TablePageProp, ConfigOpionType } from './interface';
 
 let defaultCurrentName = 'currentPage';
 let defaultSizeName = 'pageSize';
@@ -160,7 +160,7 @@ class TablePage extends PureComponent<TablePageProp> {
     const pageSize = get(pageData, sizeName, defaultSize);
     const total = get(pageData, totalName, d.length);
 
-    const tableColumns = columns && columns.filter(item => !item.hide);
+    const tableColumns = columns && columns.filter((item) => !item.hide);
 
     const pagi = needPage
       ? {

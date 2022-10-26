@@ -6,7 +6,7 @@ nav:
 
 ## TablePage
 
-> 基于 ant `Table`, `List`, 已封装分页相关
+> 基于 antd `Table`, `List`, 已封装分页相关
 
 ## Demo
 

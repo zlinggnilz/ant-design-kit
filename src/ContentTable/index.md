@@ -183,27 +183,27 @@ export default () => {
 其他属性与 ant-design-kit `Form`, `TablePage` 相同, 不再列举。 <strong>TablePage 的属性直接写在 ContentTable 上</strong>
 </Alert>
 
-| 属性名                 | 说明                                                                                                                                                              | 默认值 |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| extra                  | 放置于搜索表单 右侧的内容                                                                                                                                         | -      |
-| formWrapClassName      | 搜索表单外层 div 的 class                                                                                                                                         | -      |
-| formAttr               | 用于生成搜索表单, 参照 Form                                                                                                                                       | -      |
-| replaceLocation        | 搜索时, 是否替换 location query                                                                                                                                   | false  |
-| formProps              | 其他放置于搜索表单上的属性                                                                                                                                        | -      |
-| showReset              | 默认不显示重置按钮                                                                                                                                                | false  |
-| tableProps             | 其他放置于 table 上的属性                                                                                                                                         | -      |
-| listProps              | 其他放置于 list 上的属性                                                                                                                                          | -      |
-| searchQueryFn          | function 类型, `searchQueryFn(query)` 从 location 取的 query 做处理再赋给 form, 需返回 object                                                                     | -      |
-| searchValueFn          | function 类型, `searchValueFn(values)` 搜索表单提交时将 data 处理再去请求接口, 需返回 object。请勿在该 function 中触发 `setState`                                 | -      |
-| children               | 放在搜索表单与表格之间的内容                                                                                                                                      | -      |
-| **以下为表格选择属性** |                                                                                                                                                                   |        |
-| selected               | 当前选择列(需要手动控制选择列时)                                                                                                                                  | -      |
-| showSelect             | 显示表格选择                                                                                                                                                      | false  |
-| showResultAll          | 显示 本页全选/结果全选                                                                                                                                            | false  |
-| showSelectInfo         | 已选择几个文字信息                                                                                                                                                | true   |
-| rowDisable             | function(record), 返回布尔值 用在 selections disabled                                                                                                             | -      |
-| rowSelection           | 用于 Table 上。当 showSelect=true 时, 将与默认 rowSelection 合并, 再赋给 Table                                                                                    | -      |
-| onTableSelectChange    | function({type, selectedRowKeys, selectedRows}), 选择项发生变化的回调。<br/>type 值为 'currentPage' 或 'resultAll' , 本页全选和手动勾选的 type 都是 'currentPage' | -      |
+| 属性名                 | 说明                                                                                                                                                              | 默认值    |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| extra                  | 放置于搜索表单 右侧的内容                                                                                                                                         | -         |
+| formWrapClassName      | 搜索表单外层 div 的 class                                                                                                                                         | -         |
+| formAttr               | 用于生成搜索表单, 参照 Form                                                                                                                                       | -         |
+| ~~replaceLocation~~    | ~~搜索时, 是否替换 location query~~                                                                                                                               | ~~false~~ |
+| formProps              | 其他放置于搜索表单上的属性                                                                                                                                        | -         |
+| showReset              | 默认不显示重置按钮                                                                                                                                                | false     |
+| tableProps             | 其他放置于 table 上的属性                                                                                                                                         | -         |
+| listProps              | 其他放置于 list 上的属性                                                                                                                                          | -         |
+| searchQueryFn          | function 类型, `searchQueryFn(query)` 从 location 取的 query 做处理再赋给 form, 需返回 object                                                                     | -         |
+| searchValueFn          | function 类型, `searchValueFn(values)` 搜索表单提交时将 data 处理再去请求接口, 需返回 object。请勿在该 function 中触发 `setState`                                 | -         |
+| children               | 放在搜索表单与表格之间的内容                                                                                                                                      | -         |
+| **以下为表格选择属性** |                                                                                                                                                                   |           |
+| selected               | 当前选择列(需要手动控制选择列时)                                                                                                                                  | -         |
+| showSelect             | 显示表格选择                                                                                                                                                      | false     |
+| showResultAll          | 显示 本页全选/结果全选                                                                                                                                            | false     |
+| showSelectInfo         | 已选择几个文字信息                                                                                                                                                | true      |
+| rowDisable             | function(record), 返回布尔值 用在 selections disabled                                                                                                             | -         |
+| rowSelection           | 用于 Table 上。当 showSelect=true 时, 将与默认 rowSelection 合并, 再赋给 Table                                                                                    | -         |
+| onTableSelectChange    | function({type, selectedRowKeys, selectedRows}), 选择项发生变化的回调。<br/>type 值为 'currentPage' 或 'resultAll' , 本页全选和手动勾选的 type 都是 'currentPage' | -         |
 | columnTitle            | showResultAll=true 时, 内置了自定义 columnTitle <br/>设置 columnTitle=false, 可使用 antd table 的默认 columnTitle                                                 |
 
 ### 表格传参
@@ -212,7 +212,7 @@ export default () => {
 
 - `payload`: 赋给表格的 `payload`, 请求时会带上, 再次执行搜索时, 搜索表单提交的 data 会将 payload 重新赋值
 - `params`: 赋给表格的 `params`, 请求时会一直带上, 再次执行搜索不会覆盖 params
-- `location.query`: 路由上的参数, 开启了 `replaceLocation` 才会执行
+- ~~`location.query`: 路由上的参数, 开启了 `replaceLocation` 才会执行~~
 - `formData`: 赋给搜索表单的默认值
 
 ## Method

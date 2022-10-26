@@ -1,5 +1,5 @@
-import { TablePageProp } from '../TablePage/interface';
-import { FormAttrFieldType } from '../Form/interface';
+import type { TablePageProp } from '../TablePage/interface';
+import type { FormAttrFieldType } from '../Form/interface';
 
 export interface ContentTableProp extends TablePageProp {
   searchValueFn?: Function;
@@ -10,7 +10,6 @@ export interface ContentTableProp extends TablePageProp {
   listProps?: Object;
   formProps?: { data?: any };
   children?: any;
-  replaceLocation?: boolean;
   showReset?: boolean;
   formClassName?: string;
 }

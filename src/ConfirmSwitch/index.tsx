@@ -1,6 +1,6 @@
 import React, { useState, memo } from 'react';
 import { Switch, message } from 'antd';
-import { SwitchProps } from 'antd/lib/switch';
+import type { SwitchProps } from 'antd/lib/switch';
 
 interface ConfirmSwitchTypes extends Omit<SwitchProps, 'onChange'> {
   onChange: Function;
@@ -38,7 +38,7 @@ const ConfirmSwitch = ({
     setloading(true);
 
     return handle.then(
-      function() {
+      function () {
         const v = !checkedValue;
         setcheckedValue(v);
         if (v) {
@@ -48,7 +48,7 @@ const ConfirmSwitch = ({
         }
         setloading(false);
       },
-      function(err: any) {
+      function (err: any) {
         // console.log(err);
         setloading(false);
       },
